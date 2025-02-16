@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{url_for('static',filename='style/prdiction_css.css')}}">
+    <style>
+           .crop-image-box {
+            border: 20px groove rgb(239, 201, 9); 
+            padding: 5px;
+            text-align: center;
+            width: 300px;
+            height: 300px; 
+            margin: 5px auto;
+            box-sizing: border-box; 
+        }
+        .crop-image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; 
+        }
+        .prediction-container {
+            text-align: center;
+            text-shadow: limegreen;
+            text-decoration: double;
+            color: rgb(221, 240, 10) ;
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="prediction-container">
+    <h4>According to your soil nutrients</h4>
+    <h4> You Should Grow -> </h4>
+    <br>
+    <h2>{{prediction}}</h2>
+    
+    <div class="crop-image-box">
+      <img id="cropImage" alt="{{ prediction }}">
+  </div>
+    </div>
+ 
+
+  <script>
+        
+        var prediction = "{{ prediction }}".toLowerCase(); 
+
+        
+        var imagePath = "{{ url_for('static', filename='images/') }}" + prediction + ".jpg";
+
+        document.getElementById('cropImage').src = imagePath;
+    </script>
+
+
+  </body>
+</html>
